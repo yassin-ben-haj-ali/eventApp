@@ -13,11 +13,22 @@ export default tseslint.config([
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
     ],
+    plugins: {
+      'react-refresh': reactRefresh,
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+		"@tanstack/query/exhaustive-deps": "off",
+		"react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+		"react-hooks/exhaustive-deps": "off",
+		"no-console": "warn",
+		"@typescript-eslint/ban-ts-comment": "off",
+		"no-mixed-spaces-and-tabs": "off",
+	 },
+    ignores: ['node_modules', 'dist', 'eslint.config.js'],
   },
 ])
