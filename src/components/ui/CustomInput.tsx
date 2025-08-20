@@ -10,10 +10,11 @@ export interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputEle
 	required?: boolean;
 	disabled?: boolean;
 	passwordInput?: boolean;
+	setValue?: (value: string) => void;
 }
 
 const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
-	({ className, label, type, passwordInput, ...props }, ref) => {
+	({ className, label, type, passwordInput, setValue, ...props }, ref) => {
 		const [showPassword, setShowPassword] = useState(false);
 		let inputType;
 		if (passwordInput) {
@@ -21,6 +22,10 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
 		} else {
 			inputType = type;
 		}
+
+		const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+			setValue?.(e.target.value);
+		};
 
 		return (
 			<div className="flex w-full flex-col gap-2">
@@ -41,6 +46,8 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
 							props.disabled && "cursor-not-allowed",
 							className
 						)}
+						autoComplete={props.autoComplete}
+						onChange={handleChange}
 						{...props}
 					/>
 					{passwordInput && (

@@ -6,7 +6,7 @@ type loginData = {
 	password: string;
 };
 
-type userData = {
+export type userData = {
 	email: string;
 	firstName: string;
 	id: string;

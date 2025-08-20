@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LoginPageLayout from "./LoginPage/LoginPageLayout";
 import LoginPage from "./LoginPage/LoginPage";
+import RegisterPage from "./LoginPage/RegisterPage";
 
 const AppRoutes = () => {
 	return (
@@ -10,6 +11,14 @@ const AppRoutes = () => {
 				element={
 					<LoginPageLayout>
 						<LoginPage />
+					</LoginPageLayout>
+				}
+			/>
+			<Route
+				path="register"
+				element={
+					<LoginPageLayout>
+						<RegisterPage />
 					</LoginPageLayout>
 				}
 			/>

@@ -15,24 +15,26 @@ const LoginPage = () => {
 		loginQuery.mutate(data);
 	};
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-			<CustomInput
-				label="Email"
-				placeholder="Entrez votre email"
-				type="email"
-				{...register("email")}
-				error={errors.email?.message}
-				required
-			/>
-			<CustomInput
-				label="Mot de passe"
-				placeholder="Entrez votre mot de passe"
-				type="password"
-				passwordInput
-				{...register("password")}
-				error={errors.password?.message}
-				required
-			/>
+		<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+			<div className="space-y-4">
+				<CustomInput
+					label="Email"
+					placeholder="Entrez votre email"
+					type="email"
+					{...register("email")}
+					error={errors.email?.message}
+					required
+				/>
+				<CustomInput
+					label="Mot de passe"
+					placeholder="Entrez votre mot de passe"
+					type="password"
+					passwordInput
+					{...register("password")}
+					error={errors.password?.message}
+					required
+				/>
+			</div>
 			<Button type="submit" className="w-full">
 				Se connecter
 			</Button>
