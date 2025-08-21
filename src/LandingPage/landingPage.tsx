@@ -6,13 +6,13 @@ import Events from "./sections/Events/Events";
 const LandingPage = () => {
 	return (
 		<div className="space-y-6">
-        <Header />
-        <div className="space-y-12">
-			<Banner />
-			<Events />
+			<Header />
+			<div className="space-y-12">
+				<Banner />
+				<Events />
+			</div>
+			<Footer />
 		</div>
-            <Footer />
-        </div>
 	);
 };
 
