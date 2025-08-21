@@ -12,7 +12,7 @@ const EventCard: React.FC<EventCardProps> = ({ title, date, location, image }) =
 				<h2 className="text-xl font-semibold">{title}</h2>
 				<p className="text-gray-600">{date}</p>
 				<p className="text-gray-600">{location}</p>
-				<button className="rounded bg-[#4A919E] px-4 py-2 text-white hover:cursor-pointer">
+				<button className="rounded bg-primary px-4 py-2 text-white hover:cursor-pointer">
 					Participer
 				</button>
 			</div>
