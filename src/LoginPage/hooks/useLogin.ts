@@ -1,26 +1,17 @@
 import axios from "@/api/axios";
+import { useStore } from "@/store/store";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import type { User } from "../store/types";
 
 type loginData = {
 	email: string;
 	password: string;
 };
 
-export type userData = {
-	email: string;
-	firstName: string;
-	id: string;
-	lastName: string;
-	role: string;
-};
-
 type loginResponse = {
 	message: string;
-	user: {
-		accessToken: string;
-		refreshToken: string;
-		data: userData;
-	};
+	data: User;
 };
 
 const loginUser = async (data: loginData): Promise<loginResponse> => {
@@ -29,8 +20,14 @@ const loginUser = async (data: loginData): Promise<loginResponse> => {
 };
 
 const useLoginUser = () => {
+	const setUser = useStore((state) => state.myUser.setUser);
+	const navigate = useNavigate();
 	return useMutation({
 		mutationFn: async (data: loginData) => await loginUser(data),
+		onSuccess: (data) => {
+			setUser(data.data);
+			navigate("/");
+		},
 	});
 };
 

@@ -27,10 +27,11 @@ const EventsList = () => {
 			{Events.map((event) => (
 				<div key={event.id} className="w-1/3">
 					<EventCard
-						title={event.title}
+						name={event.title}
 						date={event.date}
 						location="Leoni Tunisie"
 						image={event.image}
+						subscribeButton={true}
 					/>
 				</div>
 			))}
