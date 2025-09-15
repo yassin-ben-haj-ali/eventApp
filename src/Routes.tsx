@@ -7,6 +7,7 @@ import RequireAuth from "./RequireAuth";
 import HomePage from "./HomePage/HomePage";
 import LoginPageLayout from "./LoginPage/LoginPageLayout";
 import LandingPage from "./LandingPage/landingPage";
+import EventsDetailsPage from "./EventDetails/EventDetails";
 const AppRoutes = () => {
 	return (
 		<Routes>
@@ -27,6 +28,7 @@ const AppRoutes = () => {
 					<Route index element={<Navigate to="/home" replace />} />
 					<Route element={<RequireAuth />}>
 						<Route path="/home" element={<HomePage />} />
+						<Route path="/events/:id" element={<EventsDetailsPage />} />
 					</Route>
 				</Route>
 			</Route>
