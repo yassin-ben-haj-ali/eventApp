@@ -4,6 +4,8 @@ import { Calendar, MapPin } from "lucide-react";
 import Loader from "@/components/ui/Loader/Loader";
 import { useStore } from "@/store/store";
 import { Button } from "@/components/ui/button";
+import useCreateRegistration from "./hooks/useCreateRegistration";
+import FeedBackDialog from "./FeedBackDialog";
 
 const EventsDetailsPage = () => {
 	const params = useParams();
@@ -23,6 +25,8 @@ const EventsDetailsPage = () => {
 		const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
 		return daysDifference >= 1;
 	};
+	const { handleCreateRegistration, isLoading } = useCreateRegistration();
+
 	const userSubscribed = eventDetails.data?.pages?.[0].paginatedResult?.[0].events.some(
 		(registration) => registration.userId == user?.id
 	);
@@ -60,19 +64,24 @@ const EventsDetailsPage = () => {
 						</p>
 					</div>
 					<div className="flex w-full items-end justify-end space-x-3 pt-4">
-						<Button
-							type="button"
-							className="w-1/2 cursor-pointer bg-[#7C93C3] text-white hover:bg-[#7C93C3]"
-						>
-							Consulter les avis
-						</Button>
+						{userSubscribed && <FeedBackDialog />}
 
 						{!userSubscribed &&
 							checkDateDifference(
 								eventDetails.data?.pages?.[0]?.paginatedResult?.[0].date ?? new Date()
 							) && (
-								<Button className="w-1/2 cursor-pointer" type="button">
-									Participer
+								<Button
+									disabled={isLoading}
+									className="w-1/2 cursor-pointer"
+									type="button"
+									onClick={() => {
+										if (!eventId) return;
+										handleCreateRegistration({
+											eventId,
+										});
+									}}
+								>
+									{isLoading ? <Loader fillColor="white" /> : "S'inscrire à l'événement"}
 								</Button>
 							)}
 					</div>

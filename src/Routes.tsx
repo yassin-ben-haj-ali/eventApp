@@ -21,7 +21,14 @@ const AppRoutes = () => {
 					}
 				/>
 			</Route>
-			<Route element={<RegisterPage />} />
+			<Route
+				path="register"
+				element={
+					<LoginPageLayout>
+						<RegisterPage />
+					</LoginPageLayout>
+				}
+			/>
 			<Route path="/landing" element={<LandingPage />} />
 			<Route element={<PersistLogin />}>
 				<Route path="/" element={<Layout />}>
